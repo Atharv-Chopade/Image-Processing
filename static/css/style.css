@@ -1,0 +1,582 @@
+:root {
+    --ink: #60a5fa;
+    --ink-deep: #0f172a;
+    --amber: #38bdf8;
+    --stage: #111827;
+
+    --bg: #080d19;
+    --surface: #111a2b;
+    --surface-hover: #1a2740;
+    --border: #27354d;
+
+    --text: #e5edf8;
+    --text-muted: #94a3b8;
+    --success: #34d399;
+    --danger: #fb7185;
+
+    --font-ui: "Inter", "Segoe UI", sans-serif;
+    --font-num: "JetBrains Mono", monospace;
+
+    --radius: 12px;
+    --radius-sm: 8px;
+
+    --transition: 0.25s ease;
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* 2. DARK THEME OVERRIDES */
+[data-bs-theme="dark"] {
+    --ink: #93c5fd;
+    --ink-deep: #080d19;
+    --amber: #38bdf8;
+    --stage: #080d19;
+
+    --bg: #080d19;
+    --surface: #111a2b;
+    --surface-hover: #1a2740;
+    --border: #27354d;
+
+    --text: #e5edf8;
+    --text-muted: #94a3b8;
+}
+
+/* 3. BASE STYLES */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    transition:
+        background var(--transition),
+        color var(--transition),
+        border-color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+}
+
+::selection {
+    background: var(--ink);
+    color: var(--ink-deep);
+}
+
+/* 4. APPLICATION TOP BAR */
+.app-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 28px;
+
+    background: rgba(8, 13, 25, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.brand-name {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.brand-name span {
+    color: var(--amber);
+}
+
+.app-bar a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.app-bar a:hover {
+    color: var(--amber);
+}
+
+/* 5. GENERAL PANELS AND CARDS */
+.card,
+.panel,
+.channel-card,
+.history-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.card,
+.panel {
+    padding: 20px;
+}
+
+.card h2,
+.panel h2,
+.card h3,
+.panel h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* 6. IMAGE UPLOAD DROP ZONE */
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 190px;
+    padding: 30px;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(56, 189, 248, 0.09),
+            transparent 70%
+        ),
+        var(--surface);
+
+    border: 2px dashed #38516f;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+    cursor: pointer;
+}
+
+.dropzone:hover,
+.dropzone.dragover {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.08);
+}
+
+.dropzone h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.dropzone p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.dropzone svg,
+.dropzone .upload-icon {
+    color: var(--amber);
+    font-size: 2.3rem;
+}
+
+/* 7. OPERATION BUTTONS */
+.op-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 15px;
+    background: var(--surface);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.op-btn:hover {
+    background: var(--surface-hover);
+    border-color: var(--ink);
+    color: #bfdbfe;
+    transform: translateY(-2px);
+}
+
+.op-btn.active {
+    background: linear-gradient(135deg, #2563eb, #0891b2);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.op-btn:active {
+    transform: scale(0.98);
+}
+
+/* 8. PRIMARY APPLY BUTTON */
+.btn-apply {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 12px 24px;
+
+    background: linear-gradient(135deg, #2563eb, #0891b2);
+    color: #ffffff;
+
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+
+    box-shadow: 0 5px 18px rgba(37, 99, 235, 0.22);
+}
+
+.btn-apply:hover {
+    filter: brightness(1.13);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.32);
+}
+
+.btn-apply:active {
+    transform: translateY(0);
+}
+
+.btn-apply:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* 9. IMAGE PREVIEW STAGE */
+.stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    min-height: 300px;
+    height: 62vh;
+    max-height: 680px;
+    padding: 16px;
+
+    background-color: var(--stage);
+    background-image:
+        linear-gradient(45deg, #172033 25%, transparent 25%),
+        linear-gradient(-45deg, #172033 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #172033 75%),
+        linear-gradient(-45deg, transparent 75%, #172033 75%);
+    background-size: 24px 24px;
+    background-position:
+        0 0, 0 12px, 12px -12px, -12px 0;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.stage-img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+}
+
+.stage:empty::after {
+    content: "Your image preview will appear here";
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 10. HISTOGRAM */
+.hist-figure {
+    padding: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.hist-figure canvas,
+.hist-figure svg {
+    max-width: 100%;
+}
+
+.hist-figure h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+/* 11. CHANNEL CARDS */
+.channel-card {
+    padding: 16px;
+    transition: border-color var(--transition),
+                transform var(--transition);
+}
+
+.channel-card:hover {
+    border-color: var(--ink);
+    transform: translateY(-3px);
+}
+
+.channel-card img,
+.channel-card canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    background: var(--stage);
+}
+
+.channel-card h4 {
+    margin: 12px 0 4px;
+    color: var(--text);
+}
+
+.channel-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* 12. HISTORY ITEMS */
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    box-shadow: none;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.history-item:hover {
+    background: var(--surface-hover);
+    border-color: var(--ink);
+}
+
+.history-item img {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.history-item p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* 13. FORM CONTROLS */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #526985;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--ink);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.12);
+}
+
+input[type="range"] {
+    padding: 0;
+    accent-color: var(--amber);
+    cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    accent-color: var(--ink);
+}
+
+/* 14. TABS */
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 11px 15px;
+    transition: all var(--transition);
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--text);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--amber);
+    background: transparent;
+    border-bottom-color: var(--amber);
+}
+
+/* 15. BADGES AND STATUS */
+.badge,
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px 10px;
+    border-radius: 999px;
+
+    color: #7dd3fc;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.status-success {
+    color: var(--success);
+}
+
+.status-error {
+    color: var(--danger);
+}
+
+/* 16. SCROLLBARS */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #354661 var(--bg);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #354661;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #526985;
+}
+
+/* 17. RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .app-bar {
+        padding: 13px 16px;
+        flex-wrap: wrap;
+    }
+
+    .brand-name {
+        font-size: 1.15rem;
+    }
+
+    .card,
+    .panel {
+        padding: 14px;
+    }
+
+    .dropzone {
+        min-height: 155px;
+        padding: 20px;
+    }
+
+    .stage {
+        height: 42vh;
+        min-height: 220px;
+        padding: 10px;
+    }
+
+    .op-btn {
+        padding: 9px 11px;
+        font-size: 0.82rem;
+    }
+
+    .btn-apply {
+        width: 100%;
+    }
+
+    .history-item img {
+        width: 46px;
+        height: 46px;
+    }
+}
+
+/* 18. ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
